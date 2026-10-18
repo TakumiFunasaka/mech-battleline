@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import type { CardId } from './cards'
-import { allCards, cardId, companyOf } from './cards'
-import { DEFAULT_CONFIG } from './config'
+import { allCards, cardId, companyOf, numberOf } from './cards'
+import { DECK_CONFIG, DEFAULT_CONFIG } from './config'
 import type { TerrainId } from './config'
-import { chooseMove } from './cpu'
+import { chooseMove, pickDraw } from './cpu'
 import type { GameState, Player } from './engine'
 import { checkWinner, deploy, legalMoves, newGame, openFlags } from './engine'
 import { bestValue, formationOf, formationValue } from './evaluate'
@@ -346,6 +346,149 @@ describe('CPU対CPUの通し対戦', () => {
       const special = a.flags.filter((f) => f.terrain !== 'plain').length
       expect(special).toBeGreaterThanOrEqual(1)
       expect(special).toBeLessThanOrEqual(2)
+    }
+  })
+})
+
+describe('契約企業の効果（実験中）', () => {
+  const K = { ...cfg, contracts: true }
+  const RED = 0, BLUE = 1, YELLOW = 2, GREEN = 3, WHITE = 4
+  const v = (cards: CardId[], contract: number | null, terrain: TerrainId = 'plain') =>
+    formationValue(K, cards, terrain, contract)
+
+  it('剛炎（赤）：自分の契約社の機体は合計で1機+1。役は変わらない', () => {
+    // 寄せ集め 赤2・青5・黄9（16+1）> 寄せ集め 緑8・白8・黒1（17）は同値→ 赤契約なら上回る
+    expect(v(cs('赤2', '青5', '黄9'), RED)).toBeGreaterThan(v(cs('緑8', '白7', '黒1'), null))
+    expect(v(cs('赤2', '青5', '黄9'), null)).toBeLessThan(v(cs('緑8', '白7', '黒2'), null))
+    // 相手の契約社の機体を使っても効果はない
+    expect(v(cs('赤2', '青5', '黄9'), BLUE)).toBe(v(cs('赤2', '青5', '黄9'), null))
+  })
+  it('セレスタイン（青）：青の1・6は平原でも有利機。平原では同じ役で優先まで（格上げはしない）', () => {
+    expect(v(cs('青1', '青2', '青9'), BLUE)).toBeGreaterThan(v(cs('赤5', '赤8', '赤9'), null))
+    expect(v(cs('青1', '青6', '青9'), BLUE)).toBeLessThan(v(cs('黄9', '緑9', '白9'), null))
+    // 他社の飛行機は対象外
+    expect(v(cs('赤1', '赤6', '赤9'), BLUE)).toBeLessThan(v(cs('黄9', '緑9', '白9'), null))
+  })
+  it('アルビオン（白）：白を2機以上含めば同じ役で優先', () => {
+    expect(v(cs('白2', '白3', '赤9'), WHITE)).toBeGreaterThan(v(cs('赤8', '青8', '緑7'), null))
+    expect(v(cs('白2', '赤3', '青9'), WHITE)).toBeLessThan(v(cs('赤8', '青8', '緑7'), null))
+  })
+  it('トライレール（黄）：黄を置いた手番は2枚引き、上限7枚', () => {
+    const s = blank({}, K)
+    s.contracts = [YELLOW, null]
+    s.hands[0] = cs('黄1', '赤1', '赤2', '赤3', '赤4', '赤5')
+    s.hands[1] = cs('青1')
+    fillDeck(s)
+    const t = deploy(s, { card: c('黄1'), flag: 0 })
+    expect(t.hands[0].length).toBe(7)
+    // 契約社以外を置いたら通常どおり1枚
+    const u = deploy({ ...t, current: 0 }, { card: c('赤1'), flag: 1 })
+    expect(u.hands[0].length).toBe(7)
+  })
+  it('グリーンホロウ（緑）：緑を置いた手番は上2枚から1枚を選び、残りは山札の下へ', () => {
+    const s = blank({}, K)
+    s.contracts = [GREEN, null]
+    s.hands[0] = cs('緑1')
+    s.hands[1] = cs('青1')
+    fillDeck(s)
+    const [a, b] = s.deck
+    const t = deploy(s, { card: c('緑1'), flag: 0 }, () => b)
+    expect(t.hands[0]).toEqual([b])
+    expect(t.deck[t.deck.length - 1]).toBe(a)
+    expect(t.deck.length).toBe(s.deck.length - 1)
+  })
+  it('契約なしの設定では効果が出ない', () => {
+    expect(formationValue(cfg, cs('赤2', '青5', '黄9'), 'plain', RED)).toBe(val(cs('赤2', '青5', '黄9')))
+  })
+})
+
+describe('社ごとの番号構成（実験中）', () => {
+  const LINEUP = [
+    [3, 5, 6, 7, 7, 8, 8, 9, 9],
+    [1, 1, 2, 3, 5, 6, 6, 7, 8],
+    [2, 3, 3, 4, 4, 5, 6, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [2, 4, 5, 5, 6, 7, 8, 8, 9],
+    [1, 1, 2, 2, 4, 5, 6, 7, 7],
+  ]
+  const L = { ...cfg, companyNumbers: LINEUP }
+  it('同じ社に同じ番号が2枚あってよく、IDから番号・社が引ける', () => {
+    const red7s = allCards(L, [0]).filter((x) => numberOf(L, x) === 7)
+    expect(red7s.length).toBe(2)
+    expect(red7s.every((x) => companyOf(L, x) === 0)).toBe(true)
+    expect(allCards(L, [0, 1, 2, 3, 4, 5]).length).toBe(54)
+  })
+  it('同じ社の 7・7・8 は純正チーム（連番ではない）', () => {
+    const [a, b] = allCards(L, [0]).filter((x) => numberOf(L, x) === 7)
+    const e = cardId(L, 0, 8)
+    expect(formationOf(L, [a, b, e])).toBe('flush')
+  })
+  it('同じ社の 7・7 と他社の 7 で同型機', () => {
+    const [a, b] = allCards(L, [0]).filter((x) => numberOf(L, x) === 7)
+    expect(formationOf(L, [a, b, cardId(L, 1, 7)])).toBe('triple')
+  })
+  it('持っていない番号のカードは作れない', () => {
+    expect(() => cardId(L, 0, 1)).toThrow()
+  })
+})
+
+describe('デッキ制（試作）', () => {
+  const GOE = 0, TRL = 2, GHC = 3, ALB = 4, NMS = 5
+  /** 陣営を指定して始め、番号の並びからカードを取り出す */
+  const game = (f0: number, f1: number, seed = 1) => newGame(seed, DECK_CONFIG, { factions: [f0, f1] })
+  const pick = (s: GameState, p: Player, nums: number[]) => {
+    const pool = [...s.decks![p], ...s.hands[p]]
+    return nums.map((n) => {
+      const i = pool.findIndex((c) => numberOf(s.cfg, c) === n)
+      if (i < 0) throw new Error(`no ${n}`)
+      return pool.splice(i, 1)[0]
+    })
+  }
+
+  it('各自の18枚のデッキから6枚配られ、トライレールは8枚', () => {
+    const s = game(GOE, TRL)
+    expect(s.decks![0].length + s.hands[0].length).toBe(18)
+    expect(s.hands[0].length).toBe(6)
+    expect(s.hands[1].length).toBe(8)
+    expect([...s.decks![1], ...s.hands[1]].every((c) => companyOf(s.cfg, c) === TRL)).toBe(true)
+  })
+  it('陣営を指定しなければ、両者は別々の社になる', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      const s = newGame(seed, DECK_CONFIG)
+      expect(s.contracts[0]).not.toBe(s.contracts[1])
+    }
+  })
+  it('役：同型機 > 連携 > 二機編隊 > 寄せ集め', () => {
+    const s = game(ALB, NMS)
+    const v = (nums: number[]) => formationValue(s.cfg, pick(s, 0, nums), 'plain', null)
+    expect(formationOf(s.cfg, pick(s, 0, [4, 4, 9]))).toBe('pair')
+    expect(v([5, 5, 5])).toBeGreaterThan(v([7, 8, 9]))
+    expect(v([1, 2, 3])).toBeGreaterThan(v([9, 9, 8]))
+    expect(v([4, 4, 1])).toBeGreaterThan(v([9, 7, 5]))
+  })
+  it('剛炎：合計+1/機。アルビオン：同じ役なら優先', () => {
+    const s = game(GOE, ALB)
+    const red = pick(s, 0, [2, 5, 9])
+    expect(formationValue(s.cfg, red, 'plain', GOE)).toBe(formationValue(s.cfg, red, 'plain', null) + 3)
+    // 合計が小さくても、同じ役（連携）ならアルビオンの勝ち
+    const white = pick(s, 1, [1, 2, 3])
+    const redStraight = pick(s, 0, [7, 8, 9])
+    expect(formationValue(s.cfg, white, 'plain', ALB)).toBeGreaterThan(formationValue(s.cfg, redStraight, 'plain', GOE))
+  })
+  it('ネメシス：同じ役なら合計が小さいほうが強い', () => {
+    const s = game(NMS, GHC)
+    const light = pick(s, 0, [1, 1, 1])
+    const heavy = pick(s, 1, [6, 6, 6])
+    expect(formationValue(s.cfg, light, 'plain', NMS)).toBeGreaterThan(formationValue(s.cfg, heavy, 'plain', GHC))
+  })
+  it('CPU同士で最後まで進み、勝敗がつく', () => {
+    for (let seed = 1; seed <= 6; seed++) {
+      let s = newGame(seed, DECK_CONFIG)
+      const rng = createRng(seed)
+      while (s.winner === null) s = deploy(s, chooseMove(s, rng), pickDraw)
+      expect(s.winner === 0 || s.winner === 1).toBe(true)
+      // 置かれた札は、置いた側の陣営の札だけ
+      for (const f of s.flags) for (const p of [0, 1] as Player[]) for (const c of f.sides[p]) expect(companyOf(s.cfg, c)).toBe(s.contracts[p])
     }
   })
 })

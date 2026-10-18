@@ -1,9 +1,10 @@
 // ゲームの状態と進行（SPEC 第2〜6節）。状態 + アクション → 新しい状態 の純粋関数。
 import type { CardId } from './cards'
-import { allCards } from './cards'
+import { allCards, companyOf } from './cards'
 import type { GameConfig, TerrainId } from './config'
 import { DEFAULT_CONFIG } from './config'
-import { bestValue, formationValue } from './evaluate'
+import type { Contract } from './evaluate'
+import { bestValue, contractEffect, formationValue } from './evaluate'
 import { createRng, randInt, shuffle } from './rng'
 
 export type Player = 0 | 1
@@ -32,7 +33,12 @@ export interface GameState {
   seed: number
   /** この試合で使う社（社のインデックス、昇順） */
   companies: number[]
+  /** 各プレイヤーの契約社（契約なしは null）。デッキ制では各自の陣営（使うデッキの社） */
+  contracts: [Contract, Contract]
+  /** 共有山札（デッキ制では空） */
   deck: CardId[]
+  /** デッキ制：各自の山札（共有山札ルールでは null） */
+  decks: [CardId[], CardId[]] | null
   hands: [CardId[], CardId[]]
   flags: FlagState[]
   current: Player
@@ -50,7 +56,12 @@ export interface Move {
 
 export const other = (p: Player): Player => (p === 0 ? 1 : 0)
 
-export function newGame(seed: number, cfg: GameConfig = DEFAULT_CONFIG): GameState {
+export interface NewGameOptions {
+  /** デッキ制：各プレイヤーの陣営（社のインデックス）。null ならランダム（相手と別の社） */
+  factions?: [number | null, number | null]
+}
+
+export function newGame(seed: number, cfg: GameConfig = DEFAULT_CONFIG, opts: NewGameOptions = {}): GameState {
   const rng = createRng(seed)
 
   // 1. 特殊地形
@@ -64,6 +75,8 @@ export function newGame(seed: number, cfg: GameConfig = DEFAULT_CONFIG): GameSta
     terrains[pos] = cfg.specialTerrains[randInt(rng, cfg.specialTerrains.length)]
   }
 
+  if (cfg.variant === 'decks') return newDeckGame(seed, cfg, rng, terrains, opts)
+
   // 2. 使う社を選んで配札
   const pool = Array.from({ length: cfg.companyPool }, (_, i) => i)
   const companies =
@@ -74,11 +87,23 @@ export function newGame(seed: number, cfg: GameConfig = DEFAULT_CONFIG): GameSta
   // 3. 先手
   const current = randInt(rng, 2) as Player
 
+  // 4. 契約（実験中）：効果のある社から、両者に別々の社をランダムに割り当てる
+  let contracts: [Contract, Contract] = [null, null]
+  if (cfg.contracts) {
+    const candidates = shuffle(
+      rng,
+      companies.filter((c) => cfg.companyEffects[c] !== 'none'),
+    )
+    contracts = [candidates[0] ?? null, candidates[1] ?? null]
+  }
+
   return {
     cfg,
     seed,
     companies,
+    contracts,
     deck,
+    decks: null,
     hands,
     flags: terrains.map((terrain) => ({
       terrain,
@@ -95,9 +120,76 @@ export function newGame(seed: number, cfg: GameConfig = DEFAULT_CONFIG): GameSta
   }
 }
 
+/** デッキ制の準備：陣営を決め、各自のデッキを作って配る */
+function newDeckGame(
+  seed: number,
+  baseCfg: GameConfig,
+  rng: () => number,
+  terrains: TerrainId[],
+  opts: NewGameOptions,
+): GameState {
+  const all = baseCfg.factionDecks.map((_, i) => i)
+  const want = opts.factions ?? [null, null]
+  const f0 = want[0] ?? shuffle(rng, all.filter((c) => c !== want[1]))[0]
+  const f1 = want[1] ?? shuffle(rng, all.filter((c) => c !== f0))[0]
+  const factions: [number, number] = [f0, f1]
+
+  // その試合のカード表：プレイヤー0のデッキ、続けてプレイヤー1のデッキ
+  const cardTable = factions.flatMap((f) => baseCfg.factionDecks[f].map((number) => ({ company: f, number })))
+  const cfg: GameConfig = { ...baseCfg, cardTable }
+  const size0 = baseCfg.factionDecks[f0].length
+  const decks: [CardId[], CardId[]] = [
+    shuffle(rng, Array.from({ length: size0 }, (_, i) => i)),
+    shuffle(rng, Array.from({ length: cardTable.length - size0 }, (_, i) => size0 + i)),
+  ]
+  const handSize = (p: Player) => (cfg.factionEffects[factions[p]] === 'handSeven' ? cfg.handSize + cfg.factionHandBonus : cfg.handSize)
+  const hands: [CardId[], CardId[]] = [decks[0].splice(0, handSize(0)), decks[1].splice(0, handSize(1))]
+  const current = randInt(rng, 2) as Player
+
+  return {
+    cfg,
+    seed,
+    companies: [...new Set(factions)],
+    contracts: factions,
+    deck: [],
+    decks,
+    hands,
+    flags: terrains.map((terrain) => ({
+      terrain,
+      sides: [[], []],
+      completedAt: [null, null],
+      owner: null,
+      securedBy: null,
+    })),
+    current,
+    moveCount: 0,
+    winner: null,
+    winReason: null,
+    events: [],
+  }
+}
+
+/** プレイヤー p が補充する山札 */
+export function drawPile(state: GameState, p: Player): CardId[] {
+  return state.decks ? state.decks[p] : state.deck
+}
+
+/**
+ * 見る側 viewer から見て、target が今後その戦場に置きうるカード。
+ * 共有山札：盤面に出ていない札（viewer 自身が target でなければ viewer の手札は除く）。
+ * デッキ制：target のデッキと手札（デッキの中身は公開なので、順番以外は分かる）。
+ */
+export function potentialPool(state: GameState, viewer: Player, target: Player): CardId[] {
+  if (state.decks) return [...state.decks[target], ...state.hands[target]]
+  const unseen = unseenCards(state)
+  if (viewer === target) return unseen
+  const mine = new Set(state.hands[viewer])
+  return unseen.filter((c) => !mine.has(c))
+}
+
 /** 盤面に出ていない全カード（山札 + 両者の手札） */
 export function unseenCards(state: GameState): CardId[] {
-  return [...state.deck, ...state.hands[0], ...state.hands[1]]
+  return [...state.deck, ...(state.decks ? [...state.decks[0], ...state.decks[1]] : []), ...state.hands[0], ...state.hands[1]]
 }
 
 /** プレイヤー p が置ける戦場 */
@@ -119,6 +211,7 @@ function cloneState(s: GameState): GameState {
   return {
     ...s,
     deck: s.deck.slice(),
+    decks: s.decks ? [s.decks[0].slice(), s.decks[1].slice()] : null,
     hands: [s.hands[0].slice(), s.hands[1].slice()],
     flags: s.flags.map((f) => ({
       ...f,
@@ -138,11 +231,17 @@ export function resolveFlags(state: GameState): void {
     if (f.owner !== null) return
     const [a, b] = f.sides
     if (a.length === full && b.length === full) {
-      const va = formationValue(cfg, a, f.terrain)
-      const vb = formationValue(cfg, b, f.terrain)
+      const va = formationValue(cfg, a, f.terrain, state.contracts[0])
+      const vb = formationValue(cfg, b, f.terrain, state.contracts[1])
       let w: Player
       if (va !== vb) w = va > vb ? 0 : 1
-      else w = (f.completedAt[0] as number) < (f.completedAt[1] as number) ? 0 : 1
+      else {
+        // 同値：先に完成させた側の勝ち。ただし陣営効果 tieWin を持つ側が片方だけなら、その側の勝ち
+        const tie0 = contractEffect(cfg, state.contracts[0]) === 'tieWin'
+        const tie1 = contractEffect(cfg, state.contracts[1]) === 'tieWin'
+        if (tie0 !== tie1) w = tie0 ? 0 : 1
+        else w = (f.completedAt[0] as number) < (f.completedAt[1] as number) ? 0 : 1
+      }
       f.owner = w
       f.securedBy = 'compare'
     } else if (cfg.proofSecuring) {
@@ -151,9 +250,9 @@ export function resolveFlags(state: GameState): void {
         const theirs = f.sides[other(s)]
         if (mine.length !== full || theirs.length >= full) continue
         unseen ??= unseenCards(state)
-        const v = formationValue(cfg, mine, f.terrain)
+        const v = formationValue(cfg, mine, f.terrain, state.contracts[s])
         // 相手の最良が v 以下なら（同値は先に完成した側の勝ち）確保
-        if (bestValue(cfg, theirs, unseen, f.terrain, v) <= v) {
+        if (bestValue(cfg, theirs, unseen, f.terrain, state.contracts[other(s)], v) <= v) {
           f.owner = s
           f.securedBy = 'proof'
         }
@@ -189,7 +288,10 @@ function endByCount(state: GameState): void {
 }
 
 /** 手番プレイヤーが配備する。決着・勝利判定・補充・手番交代（置けない側の自動パス）まで進める。 */
-export function deploy(prev: GameState, move: Move): GameState {
+/** scout の効果で山札の上2枚から1枚を選ぶ関数。省略時は上の1枚を取る */
+export type PickDraw = (state: GameState, player: Player, options: CardId[]) => CardId
+
+export function deploy(prev: GameState, move: Move, pickDraw?: PickDraw): GameState {
   if (prev.winner !== null) throw new Error('game is over')
   const p = prev.current
   const handIdx = prev.hands[p].indexOf(move.card)
@@ -218,9 +320,25 @@ export function deploy(prev: GameState, move: Move): GameState {
     return state
   }
 
-  // 4. 補充
-  const drawn = state.deck.shift()
-  if (drawn !== undefined) state.hands[p].push(drawn)
+  // 4. 補充（自分の契約社の機体を置いたときは契約効果が効く）
+  const contract = state.contracts[p]
+  const placedOwn = contract !== null && companyOf(state.cfg, move.card) === contract
+  const effect = placedOwn ? contractEffect(state.cfg, contract) : 'none'
+  const hand = state.hands[p]
+  const pile = drawPile(state, p)
+  if (effect === 'drawTwo') {
+    for (let k = 0; k < 2 && hand.length < state.cfg.contractHandLimit && pile.length > 0; k++) {
+      hand.push(pile.shift()!)
+    }
+  } else if (effect === 'scout' && pile.length >= 2) {
+    const options = pile.splice(0, 2)
+    const picked = pickDraw ? pickDraw(state, p, options) : options[0]
+    hand.push(picked)
+    pile.push(...options.filter((c) => c !== picked))
+  } else {
+    const drawn = pile.shift()
+    if (drawn !== undefined) hand.push(drawn)
+  }
   state.moveCount++
 
   // 手番交代。置けない側はパス（補充なし）。両者置けなければ確保数で終了。

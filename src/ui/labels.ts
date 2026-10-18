@@ -2,7 +2,8 @@
 import units from '../../data/units.json'
 import type { CardId } from '../game/cards'
 import { companyOf, numberOf } from '../game/cards'
-import type { Attribute, GameConfig, TerrainId } from '../game/config'
+import type { Attribute, CompanyEffect, GameConfig, TerrainId } from '../game/config'
+import { DECK_CONFIG } from '../game/config'
 
 export const ATTRIBUTE_NAME = units.attributes as Record<Attribute, string>
 export const ATTRIBUTE_SHORT: Record<Attribute, string> = { ground: '', flying: '飛', crawler: '履' }
@@ -58,3 +59,52 @@ export function cardShort(cfg: GameConfig, id: CardId): string {
   const info = cardInfo(cfg, id)
   return `${COLOR_NAME[info.color]}${info.number}`
 }
+
+/** デッキ制の陣営効果の説明（docs/SPEC_DECK.md） */
+const EFFECT_TEXT: Partial<Record<CompanyEffect, [string, string]>> = {
+  sumBonus: ['大火力', '合計に1機あたり+1'],
+  flyingOnPlain: ['飛行技術', '飛行機（1・6）は空域以外でも有利機（同じ役で優先まで）'],
+  handSeven: ['物量', `手札が${DECK_CONFIG.factionHandBonus}枚多い`],
+  scout: ['索敵', '補充のとき山札の上2枚から1枚を選ぶ（残りは山札の下へ）'],
+  eliteTie: ['精度', '同じ役なら優先（地形の有利機と同じ扱い）'],
+  lowSum: ['奇襲', '同じ役なら合計が小さいほうが強い'],
+}
+
+export interface FactionInfo {
+  index: number
+  name: string
+  shortName: string
+  color: string
+  colorName: string
+  /** 効果の見出し（例：大火力） */
+  effectShort: string
+  effectText: string
+  /** デッキの中身（例：7・8・9 ×3 ／ 2・3・4・5 ×2 ／ 6 ×1） */
+  deckText: string
+}
+
+const deckText = (nums: number[]) => {
+  const count = new Map<number, number>()
+  for (const n of nums) count.set(n, (count.get(n) ?? 0) + 1)
+  return [3, 2, 1]
+    .map((k) => {
+      const ns = [...count].filter(([, c]) => c === k).map(([n]) => n)
+      return ns.length ? `${ns.sort((a, b) => a - b).join('・')} ×${k}` : ''
+    })
+    .filter(Boolean)
+    .join(' ／ ')
+}
+
+export const FACTIONS: FactionInfo[] = units.companies.map((c, i) => {
+  const [head, body] = EFFECT_TEXT[DECK_CONFIG.factionEffects[i]] ?? ['', '']
+  return {
+    index: i,
+    name: c.name,
+    shortName: c.name.replace(/(重工|・ダイナミクス|運輸機工|開拓公社|精機|・ディフェンス)$/, ''),
+    color: c.color,
+    colorName: COLOR_NAME[c.color],
+    effectShort: head,
+    effectText: `${head}：${body}`,
+    deckText: deckText(DECK_CONFIG.factionDecks[i]),
+  }
+})

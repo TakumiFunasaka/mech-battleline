@@ -109,6 +109,69 @@ button {
   font-size: 12px;
 }
 
+.menu-note a {
+  color: var(--me);
+}
+
+/* ---- faction select（デッキ制） ---- */
+.factions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px 24px;
+}
+.factions .hud h2 {
+  margin: 0;
+  font-size: 17px;
+}
+.faction {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+.faction:active {
+  border-color: var(--me);
+}
+.faction .chip {
+  flex: none;
+  width: 28px;
+  text-align: center;
+  font-weight: 800;
+  padding: 4px 0;
+}
+.faction-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.faction-effect {
+  font-size: 13px;
+  color: var(--accent);
+}
+.faction-deck {
+  font-size: 12px;
+  color: var(--muted);
+}
+.faction-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+.faction-bar .me {
+  color: var(--me);
+}
+.faction-bar .op {
+  color: var(--op);
+  text-align: right;
+}
+
 /* ---- game ---- */
 .game {
   flex: 1;

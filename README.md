@@ -4,6 +4,9 @@
 
 公開版：https://takumifunasaka.github.io/mech-battleline/ （`main` に push すると GitHub Actions がテスト・ビルドして自動で更新する）
 
+- 共有山札版（正式仕様 `docs/SPEC.md`）：https://takumifunasaka.github.io/mech-battleline/
+- デッキ制の試作（`docs/SPEC_DECK.md`）：https://takumifunasaka.github.io/mech-battleline/deck/ （ローカルでは http://localhost:5173/deck/）
+
 ```sh
 npm install
 npm run dev     # http://localhost:5173 。同じWi-Fiのスマホからは表示される Network のURLで開く

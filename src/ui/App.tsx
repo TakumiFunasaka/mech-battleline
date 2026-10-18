@@ -2,13 +2,13 @@ import type { CSSProperties } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CardId } from '../game/cards'
 import type { GameConfig } from '../game/config'
-import { DEFAULT_CONFIG } from '../game/config'
-import { chooseMove } from '../game/cpu'
-import type { FlagState, GameEvent, GameState, Player } from '../game/engine'
-import { deploy, legalMoves, newGame, openFlags, other } from '../game/engine'
-import { FORMATION_NAME, FORMATION_RANK, favoredCount, formationOf, formationValue, rankWeight, sumOf } from '../game/evaluate'
+import { DECK_CONFIG, DEFAULT_CONFIG } from '../game/config'
+import { chooseMove, pickDraw } from '../game/cpu'
+import type { FlagState, GameEvent, GameState, Move, Player } from '../game/engine'
+import { deploy, drawPile, legalMoves, newGame, openFlags, other } from '../game/engine'
+import { FORMATION_NAME, favoredCount, formationOf, formationRank, formationValue, rankWeight, sumOf } from '../game/evaluate'
 import { createRng } from '../game/rng'
-import { ATTRIBUTE_NAME, ATTRIBUTE_SHORT, COMPANY_SHORT, TERRAIN_NAME, cardInfo, cardShort } from './labels'
+import { ATTRIBUTE_NAME, ATTRIBUTE_SHORT, COMPANY_SHORT, FACTIONS, TERRAIN_NAME, cardInfo, cardShort } from './labels'
 
 type Mode = 'cpu' | 'local'
 
@@ -22,30 +22,69 @@ const CPU_PLAYER: Player = 1
 const CPU_DELAY_MS = 700
 
 // 再現・確認用：?mode=cpu&seed=123&moves=10 で、そのシードのゲームを開始し、最初の moves 手をCPU同士で進める
+// デッキ制では ?mode=pick で陣営選択の画面から始める
 const params = new URLSearchParams(window.location.search)
 const URL_MODE = params.get('mode') as Mode | null
 const URL_SEED = params.has('seed') ? Number(params.get('seed')) : null
 const URL_MOVES = Number(params.get('moves') ?? 0)
 
-function initialGame(seed: number): GameState {
-  let g = newGame(seed)
+// デッキ制（試作）：/deck/ で開くか ?variant=deck を付けたとき（docs/SPEC_DECK.md）
+const IS_DECK = /\/deck\/?$/.test(window.location.pathname) || params.get('variant') === 'deck'
+const BASE_CFG: GameConfig = IS_DECK ? DECK_CONFIG : DEFAULT_CONFIG
+
+type Factions = [number | null, number | null]
+
+/** 1手進める。グリーンホロウの索敵（2枚から1枚選ぶ）は、人間の手番でもCPUと同じ考え方で自動で選ぶ */
+const step = (g: GameState, move: Move) => deploy(g, move, pickDraw)
+
+function initialGame(seed: number, factions: Factions): GameState {
+  let g = newGame(seed, BASE_CFG, { factions })
   if (seed === URL_SEED) {
     const rng = createRng(seed)
-    for (let i = 0; i < URL_MOVES && g.winner === null; i++) g = deploy(g, chooseMove(g, rng))
+    for (let i = 0; i < URL_MOVES && g.winner === null; i++) g = step(g, chooseMove(g, rng))
   }
   return g
 }
 
+interface Session {
+  mode: Mode
+  seed: number
+  key: number
+  factions: Factions
+}
+
 export function App() {
-  const [session, setSession] = useState<{ mode: Mode; seed: number; key: number } | null>(() =>
+  const [session, setSession] = useState<Session | null>(() =>
     URL_MODE === 'cpu' || URL_MODE === 'local'
-      ? { mode: URL_MODE, seed: URL_SEED ?? Math.floor(Math.random() * 2 ** 31), key: 0 }
+      ? { mode: URL_MODE, seed: URL_SEED ?? Math.floor(Math.random() * 2 ** 31), key: 0, factions: [null, null] }
       : null,
+  )
+  // デッキ制：陣営を選んでいる途中（どのモードで、何人目まで選んだか）
+  const [picking, setPicking] = useState<{ mode: Mode; chosen: number[] } | null>(() =>
+    IS_DECK && params.get('mode') === 'pick' ? { mode: 'cpu', chosen: [] } : null,
   )
   const [showRules, setShowRules] = useState(false)
 
-  const start = (mode: Mode) =>
-    setSession({ mode, seed: Math.floor(Math.random() * 2 ** 31), key: Date.now() })
+  const launch = (mode: Mode, factions: Factions) =>
+    setSession({ mode, seed: Math.floor(Math.random() * 2 ** 31), key: Date.now(), factions })
+
+  const start = (mode: Mode) => {
+    if (IS_DECK) setPicking({ mode, chosen: [] })
+    else launch(mode, [null, null])
+  }
+
+  const onPick = (faction: number) => {
+    if (!picking) return
+    const chosen = [...picking.chosen, faction]
+    // CPU戦は自分だけ選ぶ（CPUは別の社からランダム）。2人対戦は2人とも選ぶ
+    if (picking.mode === 'cpu') {
+      setPicking(null)
+      launch('cpu', [faction, null])
+    } else if (chosen.length === 2) {
+      setPicking(null)
+      launch('local', [chosen[0], chosen[1]])
+    } else setPicking({ ...picking, chosen })
+  }
 
   return (
     <div className="app">
@@ -54,9 +93,16 @@ export function App() {
           key={session.key}
           mode={session.mode}
           seed={session.seed}
-          onRestart={() => start(session.mode)}
+          factions={session.factions}
+          onRestart={() => launch(session.mode, session.factions)}
           onExit={() => setSession(null)}
           onRules={() => setShowRules(true)}
+        />
+      ) : picking ? (
+        <FactionSelect
+          title={picking.mode === 'cpu' ? 'あなたの陣営を選ぶ' : `プレイヤー${picking.chosen.length + 1}の陣営を選ぶ`}
+          onPick={onPick}
+          onBack={() => setPicking(null)}
         />
       ) : (
         <Menu onStart={start} onRules={() => setShowRules(true)} />
@@ -70,10 +116,11 @@ function Menu({ onStart, onRules }: { onStart: (m: Mode) => void; onRules: () =>
   return (
     <div className="menu">
       <div className="menu-title">
-        <small>MECH</small>
+        <small>{IS_DECK ? 'MECH · デッキ制（試作）' : 'MECH'}</small>
         <h1>メカ・バトルライン</h1>
         <p>
-          {DEFAULT_CONFIG.flagCount}つの戦場に3機ずつ。{winText(DEFAULT_CONFIG)}
+          {IS_DECK && '6社から1社を選び、その社のデッキで戦う。'}
+          {BASE_CFG.flagCount}つの戦場に3機ずつ。{winText(BASE_CFG)}
         </p>
       </div>
       <button className="btn primary" onClick={() => onStart('cpu')}>
@@ -85,7 +132,41 @@ function Menu({ onStart, onRules }: { onStart: (m: Mode) => void; onRules: () =>
       <button className="btn ghost" onClick={onRules}>
         ルール
       </button>
-      <p className="menu-note">Web仮組み版 v0.1</p>
+      <p className="menu-note">
+        {IS_DECK ? (
+          <>
+            デッキ制 たたき台 v0.1 ・ <a href="../">共有山札版へ</a>
+          </>
+        ) : (
+          <>
+            Web仮組み版 v0.1 ・ <a href="deck/">デッキ制（試作）へ</a>
+          </>
+        )}
+      </p>
+    </div>
+  )
+}
+
+function FactionSelect(props: { title: string; onPick: (f: number) => void; onBack: () => void }) {
+  return (
+    <div className="factions">
+      <header className="hud">
+        <button className="icon-btn" onClick={props.onBack} aria-label="戻る">
+          ‹
+        </button>
+        <h2>{props.title}</h2>
+        <span />
+      </header>
+      {FACTIONS.map((f) => (
+        <button key={f.index} className="faction" onClick={() => props.onPick(f.index)}>
+          <span className={`chip c-${f.color}`}>{f.colorName}</span>
+          <span className="faction-body">
+            <b>{f.name}</b>
+            <span className="faction-effect">{f.effectText}</span>
+            <span className="faction-deck">デッキ：{f.deckText}</span>
+          </span>
+        </button>
+      ))}
     </div>
   )
 }
@@ -93,12 +174,13 @@ function Menu({ onStart, onRules }: { onStart: (m: Mode) => void; onRules: () =>
 function Game(props: {
   mode: Mode
   seed: number
+  factions: Factions
   onRestart: () => void
   onExit: () => void
   onRules: () => void
 }) {
   const { mode, seed } = props
-  const [game, setGame] = useState<GameState>(() => initialGame(seed))
+  const [game, setGame] = useState<GameState>(() => initialGame(seed, props.factions))
   const [selected, setSelected] = useState<CardId | null>(null)
   const [inspect, setInspect] = useState<number | null>(null)
   const [showLog, setShowLog] = useState(false)
@@ -117,7 +199,7 @@ function Game(props: {
   useEffect(() => {
     if (!cpuThinking) return
     const t = setTimeout(() => {
-      setGame(deploy(game, chooseMove(game, cpuRng.current)))
+      setGame(step(game, chooseMove(game, cpuRng.current)))
     }, CPU_DELAY_MS)
     return () => clearTimeout(t)
   }, [game, cpuThinking])
@@ -135,7 +217,7 @@ function Game(props: {
 
   const onFlag = (fi: number) => {
     if (selected !== null && legalFlags.has(fi)) {
-      const next = deploy(game, { card: selected, flag: fi })
+      const next = step(game, { card: selected, flag: fi })
       setGame(next)
       setSelected(null)
       setInspect(null)
@@ -219,10 +301,23 @@ function Game(props: {
       </header>
 
       <div className="subhud">
-        <span>山札 {game.deck.length}</span>
+        <span>山札 {drawPile(game, viewer).length}</span>
         <span className={`turn ${myTurn ? 'active' : ''}`}>{turnLabel}</span>
-        <span>{names[opp]}の手札 {game.hands[opp].length}</span>
+        <span>
+          {names[opp]}の手札 {game.hands[opp].length}
+          {game.decks && `・山札 ${drawPile(game, opp).length}`}
+        </span>
       </div>
+      {game.decks && (
+        <div className="faction-bar">
+          <span className="me">
+            {names[viewer]}：{FACTIONS[game.contracts[viewer]!].shortName}（{FACTIONS[game.contracts[viewer]!].effectShort}）
+          </span>
+          <span className="op">
+            {names[opp]}：{FACTIONS[game.contracts[opp]!].shortName}（{FACTIONS[game.contracts[opp]!].effectShort}）
+          </span>
+        </div>
+      )}
 
       <div className="board" style={{ '--flags': game.flags.length } as CSSProperties}>
         {game.flags.map((f, i) => (
@@ -257,8 +352,12 @@ function Game(props: {
         ) : (
           <p className="hint">
             {mode === 'cpu' && game.current === CPU_PLAYER ? 'CPUの先手です' : '手札を選んで、置く戦場をタップ'}
-            <br />
-            今回の{game.companies.length}社：{companiesText}
+            {!game.decks && (
+              <>
+                <br />
+                今回の{game.companies.length}社：{companiesText}
+              </>
+            )}
           </p>
         )}
         <button className="log-btn" onClick={() => setShowLog(true)}>
@@ -320,7 +419,7 @@ function Game(props: {
         <div className="overlay" onClick={() => setShowLog(false)}>
           <div className="panel log" onClick={(e) => e.stopPropagation()}>
             <h2>履歴</h2>
-            <p className="seed">今回の{game.companies.length}社：{companiesText}</p>
+            {!game.decks && <p className="seed">今回の{game.companies.length}社：{companiesText}</p>}
             <ol>
               {game.events.map((e, i) => (
                 <li key={i} className={`ev-${e.type}`}>
@@ -427,8 +526,11 @@ function FlagDetail(props: { game: GameState; index: number; viewer: Player; nam
     if (cards.length === 0) return 'なし'
     const list = cards.map((c) => cardShort(game.cfg, c)).join('・')
     if (cards.length < game.cfg.slotsPerSide) return list
-    const fc = favoredCount(game.cfg, cards, f.terrain)
-    const upgraded = formationValue(game.cfg, cards, f.terrain) >= rankWeight(game.cfg) * (FORMATION_RANK[formationOf(game.cfg, cards, f.terrain)] + 1)
+    const owner = game.contracts[p]
+    const fc = favoredCount(game.cfg, cards, f.terrain, owner)
+    const upgraded =
+      formationValue(game.cfg, cards, f.terrain, owner) >=
+      rankWeight(game.cfg) * (formationRank(game.cfg, formationOf(game.cfg, cards, f.terrain)) + 1)
     const favMark = fc > 0 ? `・有利機${fc}枚${upgraded ? '（格上げ）' : ''}` : ''
     return `${list}（${FORMATION_NAME[formationOf(game.cfg, cards, f.terrain)]}・合計${sumOf(game.cfg, cards)}${favMark}）`
   }
@@ -453,6 +555,7 @@ function FlagDetail(props: { game: GameState; index: number; viewer: Player; nam
 }
 
 function Rules({ onClose }: { onClose: () => void }) {
+  if (IS_DECK) return <DeckRules onClose={onClose} />
   return (
     <div className="overlay" onClick={onClose}>
       <div className="panel rules" onClick={(e) => e.stopPropagation()}>
@@ -487,6 +590,45 @@ function Rules({ onClose }: { onClose: () => void }) {
         ) : (
           <p>両者が3枚ずつそろえた時点で比べて決着します。決着した戦場にはもう置けません。</p>
         )}
+        <button className="btn" onClick={onClose}>
+          閉じる
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function DeckRules({ onClose }: { onClose: () => void }) {
+  const cfg = DECK_CONFIG
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="panel rules" onClick={(e) => e.stopPropagation()}>
+        <h2>ルール（デッキ制・試作）</h2>
+        <p>
+          6社から1社を選び、その社の18枚のデッキで戦います（相手とは別の山札）。手札{cfg.handSize}枚から毎手番1枚を、まだ決着していない戦場の自分側に置き（各戦場3枚まで）、自分の山札から1枚引きます。
+        </p>
+        <h3>勝利条件</h3>
+        <p>{winText(cfg)}</p>
+        <h3>編成の強さ（3枚）</h3>
+        <ol className="ranks">
+          <li><b>同型機編隊</b> 3枚とも同じ番号</li>
+          <li><b>連携編成</b> 連番</li>
+          <li><b>二機編隊</b> 2枚が同じ番号</li>
+          <li><b>寄せ集め</b> それ以外</li>
+        </ol>
+        <p>同じ役なら番号の合計が大きい方。それも同じなら先に3枚目を置いた側の勝ち。各社のデッキで同型機を作れるのは3機種までです。</p>
+        <h3>特殊地形</h3>
+        <p>
+          <b>空域</b>は飛行（1・6）、<b>悪路</b>は履帯（3・4）が有利。有利機1枚で同じ役なら優先、2枚以上で役が1段上がる。
+        </p>
+        <h3>陣営効果</h3>
+        <ul className="ranks">
+          {FACTIONS.map((f) => (
+            <li key={f.index}>
+              <b>{f.shortName}</b> {f.effectText}
+            </li>
+          ))}
+        </ul>
         <button className="btn" onClick={onClose}>
           閉じる
         </button>
