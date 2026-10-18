@@ -1,0 +1,380 @@
+[
+  {
+    "model": "GOE-01",
+    "name": "物見（ものみ）",
+    "company": "剛炎重工",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: lookout tower. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-02",
+    "name": "足軽（あしがる）",
+    "company": "剛炎重工",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: foot soldier. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-03",
+    "name": "普請（ふしん）",
+    "company": "剛炎重工",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: castle construction work. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-04",
+    "name": "荷駄（にだ）",
+    "company": "剛炎重工",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: pack-horse supply train. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-05",
+    "name": "武者（むしゃ）",
+    "company": "剛炎重工",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: samurai warrior. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-06",
+    "name": "鳶（とび）",
+    "company": "剛炎重工",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: black kite bird. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-07",
+    "name": "大筒（おおづつ）",
+    "company": "剛炎重工",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: great cannon. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-08",
+    "name": "金剛（こんごう）",
+    "company": "剛炎重工",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: adamantine guardian. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GOE-09",
+    "name": "天守（てんしゅ）",
+    "company": "剛炎重工",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: Japanese heavy industry design: thick slab armor, samurai and castle motifs (layered lamellar plates, helmet crest), crimson red with black iron and brass trim, heavy and grounded. Subtle design motif inspired by: castle keep. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-01",
+    "name": "ラーク",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: lark. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-02",
+    "name": "レン",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: wren. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-03",
+    "name": "プラヴァー",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: plover. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-04",
+    "name": "ペリカン",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: pelican. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-05",
+    "name": "ホーク",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: hawk. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-06",
+    "name": "ペレグリン",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: peregrine falcon. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-07",
+    "name": "ケストレル",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: kestrel. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-08",
+    "name": "コンドル",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: condor. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "CLD-09",
+    "name": "アルバトロス",
+    "company": "セレスタイン・ダイナミクス",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: aerospace design: sleek lightweight frame, swept fins and thruster nozzles, white and cobalt blue paint, aircraft-like panel lines, thin armor, agile. Subtle design motif inspired by: albatross. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-01",
+    "name": "ピジョン",
+    "company": "トライレール運輸機工",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: pigeon. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-02",
+    "name": "コリー",
+    "company": "トライレール運輸機工",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: collie dog. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-03",
+    "name": "ビーバー",
+    "company": "トライレール運輸機工",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: beaver. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-04",
+    "name": "ミュール",
+    "company": "トライレール運輸機工",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: mule. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-05",
+    "name": "ドラフト",
+    "company": "トライレール運輸機工",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: draft horse. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-06",
+    "name": "ホーネット",
+    "company": "トライレール運輸機工",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: hornet. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-07",
+    "name": "ライノ",
+    "company": "トライレール運輸機工",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: rhinoceros. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-08",
+    "name": "バイソン",
+    "company": "トライレール運輸機工",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: bison. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "TRL-09",
+    "name": "マンモス",
+    "company": "トライレール運輸機工",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: converted construction-machinery design: hazard yellow with black stripes, exposed hydraulics and pistons, boxy off-the-shelf industrial parts, utilitarian. Subtle design motif inspired by: mammoth. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-01",
+    "name": "スポア",
+    "company": "グリーンホロウ開拓公社",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: spore. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-02",
+    "name": "ファーン",
+    "company": "グリーンホロウ開拓公社",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: fern. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-03",
+    "name": "ルート",
+    "company": "グリーンホロウ開拓公社",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: root. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-04",
+    "name": "バール",
+    "company": "グリーンホロウ開拓公社",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: tree burl. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-05",
+    "name": "オーク",
+    "company": "グリーンホロウ開拓公社",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: oak. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-06",
+    "name": "シスル",
+    "company": "グリーンホロウ開拓公社",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: thistle. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-07",
+    "name": "パイン",
+    "company": "グリーンホロウ開拓公社",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: pine. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-08",
+    "name": "アイアンバーク",
+    "company": "グリーンホロウ開拓公社",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: ironbark tree. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "GHC-09",
+    "name": "セコイア",
+    "company": "グリーンホロウ開拓公社",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: frontier survey design: olive green and tan, antennas and sensor arrays, rounded organic shapes, a few mismatched salvaged panels. Subtle design motif inspired by: sequoia. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-01",
+    "name": "ヘラルド",
+    "company": "アルビオン精機",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: herald. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-02",
+    "name": "スクワイア",
+    "company": "アルビオン精機",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: squire. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-03",
+    "name": "メイソン",
+    "company": "アルビオン精機",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: mason. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-04",
+    "name": "スチュワード",
+    "company": "アルビオン精機",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: steward. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-05",
+    "name": "ナイト",
+    "company": "アルビオン精機",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: knight. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-06",
+    "name": "ランサー",
+    "company": "アルビオン精機",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: lancer. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-07",
+    "name": "アーバレスト",
+    "company": "アルビオン精機",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: arbalest. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-08",
+    "name": "パラディン",
+    "company": "アルビオン精機",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: paladin. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "ALB-09",
+    "name": "シタデル",
+    "company": "アルビオン精機",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: elite knightly design: pearl white with gold trim, elegant proportions, clean precise panel lines, heraldic shapes, polished and expensive-looking. Subtle design motif inspired by: citadel. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-01",
+    "name": "ウィスプ",
+    "company": "ネメシス・ディフェンス",
+    "type": "偵察ドローン",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a small unmanned reconnaissance drone hovering above the ground on ducted fans, one large sensor eye, no legs, compact body. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: will-o'-the-wisp. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-02",
+    "name": "シェイド",
+    "company": "ネメシス・ディフェンス",
+    "type": "軽装スカウト",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a light, slender bipedal scout mech in a ready-to-sprint stance, minimal armor, small rifle. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: shade. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-03",
+    "name": "ディガー",
+    "company": "ネメシス・ディフェンス",
+    "type": "工兵機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a combat engineer mech whose lower body is tank treads, with a dozer blade and multi-jointed tool arms. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: grave digger. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-04",
+    "name": "ハース",
+    "company": "ネメシス・ディフェンス",
+    "type": "装甲輸送機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an armored transport carrier on heavy tank treads, boxy hull with a large cargo bay, short manipulator arms. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: hearse. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-05",
+    "name": "レイス",
+    "company": "ネメシス・ディフェンス",
+    "type": "主力汎用機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a standard mainline humanoid mech with balanced proportions, holding a rifle and a shield. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: wraith. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-06",
+    "name": "バンシー",
+    "company": "ネメシス・ディフェンス",
+    "type": "空戦機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an air-combat mech in flight with large wings and powerful thrusters, dynamic airborne pose. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: banshee. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-07",
+    "name": "レクイエム",
+    "company": "ネメシス・ディフェンス",
+    "type": "砲撃支援機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: an artillery support mech with a huge shoulder-mounted cannon and missile pods, bracing its legs. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: requiem. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-08",
+    "name": "レヴナント",
+    "company": "ネメシス・ディフェンス",
+    "type": "重装甲機",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a heavily armored bulky humanoid mech with massive shoulders and thick layered plating. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: revenant. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  },
+  {
+    "model": "NMS-09",
+    "name": "ネクロポリス",
+    "company": "ネメシス・ディフェンス",
+    "type": "移動要塞",
+    "prompt": "Simple mecha illustration for a mobile card game, flat cel shading with two tones, thick clean dark outlines, limited color palette, large simple shapes, low detail, no weathering or scratches, bold silhouette that stays readable at very small size. Subject: a colossal multi-legged walking fortress with turrets and a fortified superstructure, sense of enormous scale. Manufacturer style: stealth private-military design: matte black faceted stealth surfaces, angular and sinister, a single dim violet sensor light, ghostly. Subtle design motif inspired by: necropolis. It is a machine: robotic head with a visor or mono-eye, no human face, no skin. Full body visible with margin, 3/4 front view facing left, centered, plain light gray background, no ground texture, small soft shadow, portrait 3:4. No text, no letters, no numbers, no logos, no watermark, no humans."
+  }
+]

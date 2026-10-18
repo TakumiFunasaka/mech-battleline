@@ -1,0 +1,392 @@
+{
+  "_note": "名称はすべて仮称。社ごとの性能差はない（表示用データ）。属性は番号で決まる。",
+  "attributes": {
+    "ground": "地上",
+    "flying": "飛行",
+    "crawler": "履帯"
+  },
+  "terrains": [
+    {
+      "id": "plain",
+      "name": "平原",
+      "favored": null
+    },
+    {
+      "id": "sky",
+      "name": "空域",
+      "favored": "flying"
+    },
+    {
+      "id": "rough",
+      "name": "悪路",
+      "favored": "crawler"
+    }
+  ],
+  "unitTypes": [
+    {
+      "number": 1,
+      "type": "偵察ドローン",
+      "attribute": "flying"
+    },
+    {
+      "number": 2,
+      "type": "軽装スカウト",
+      "attribute": "ground"
+    },
+    {
+      "number": 3,
+      "type": "工兵機",
+      "attribute": "crawler"
+    },
+    {
+      "number": 4,
+      "type": "装甲輸送機",
+      "attribute": "crawler"
+    },
+    {
+      "number": 5,
+      "type": "主力汎用機",
+      "attribute": "ground"
+    },
+    {
+      "number": 6,
+      "type": "空戦機",
+      "attribute": "flying"
+    },
+    {
+      "number": 7,
+      "type": "砲撃支援機",
+      "attribute": "ground"
+    },
+    {
+      "number": 8,
+      "type": "重装甲機",
+      "attribute": "ground"
+    },
+    {
+      "number": 9,
+      "type": "移動要塞",
+      "attribute": "ground"
+    }
+  ],
+  "companies": [
+    {
+      "id": "GOE",
+      "name": "剛炎重工",
+      "color": "red",
+      "description": "造船と製鉄から始まった最古参の軍需企業。厚い装甲と大口径火器を好み、「壊れないことが最大の性能」が社是。機体名は戦国期の武家・城郭の用語。保守的な社風で、新興各社からは鈍重と揶揄される。",
+      "units": [
+        {
+          "number": 1,
+          "model": "GOE-01",
+          "name": "物見（ものみ）"
+        },
+        {
+          "number": 2,
+          "model": "GOE-02",
+          "name": "足軽（あしがる）"
+        },
+        {
+          "number": 3,
+          "model": "GOE-03",
+          "name": "普請（ふしん）"
+        },
+        {
+          "number": 4,
+          "model": "GOE-04",
+          "name": "荷駄（にだ）"
+        },
+        {
+          "number": 5,
+          "model": "GOE-05",
+          "name": "武者（むしゃ）"
+        },
+        {
+          "number": 6,
+          "model": "GOE-06",
+          "name": "鳶（とび）"
+        },
+        {
+          "number": 7,
+          "model": "GOE-07",
+          "name": "大筒（おおづつ）"
+        },
+        {
+          "number": 8,
+          "model": "GOE-08",
+          "name": "金剛（こんごう）"
+        },
+        {
+          "number": 9,
+          "model": "GOE-09",
+          "name": "天守（てんしゅ）"
+        }
+      ]
+    },
+    {
+      "id": "CLD",
+      "name": "セレスタイン・ダイナミクス",
+      "color": "blue",
+      "description": "航空宇宙産業から参入した大手。軽量フレームと推進技術に強く、地上機でも跳躍・高速移動を重視する。機体名は鳥の名前。装甲の薄さが弱点で、剛炎重工とは長年の競合。",
+      "units": [
+        {
+          "number": 1,
+          "model": "CLD-01",
+          "name": "ラーク"
+        },
+        {
+          "number": 2,
+          "model": "CLD-02",
+          "name": "レン"
+        },
+        {
+          "number": 3,
+          "model": "CLD-03",
+          "name": "プラヴァー"
+        },
+        {
+          "number": 4,
+          "model": "CLD-04",
+          "name": "ペリカン"
+        },
+        {
+          "number": 5,
+          "model": "CLD-05",
+          "name": "ホーク"
+        },
+        {
+          "number": 6,
+          "model": "CLD-06",
+          "name": "ペレグリン"
+        },
+        {
+          "number": 7,
+          "model": "CLD-07",
+          "name": "ケストレル"
+        },
+        {
+          "number": 8,
+          "model": "CLD-08",
+          "name": "コンドル"
+        },
+        {
+          "number": 9,
+          "model": "CLD-09",
+          "name": "アルバトロス"
+        }
+      ]
+    },
+    {
+      "id": "TRL",
+      "name": "トライレール運輸機工",
+      "color": "yellow",
+      "description": "物流・建設機械メーカーが軍需に転じた企業。民生部品を流用した低価格・高整備性の機体で、数を揃えたい勢力に売れている。機体名は働く動物。履帯技術は業界随一。",
+      "units": [
+        {
+          "number": 1,
+          "model": "TRL-01",
+          "name": "ピジョン"
+        },
+        {
+          "number": 2,
+          "model": "TRL-02",
+          "name": "コリー"
+        },
+        {
+          "number": 3,
+          "model": "TRL-03",
+          "name": "ビーバー"
+        },
+        {
+          "number": 4,
+          "model": "TRL-04",
+          "name": "ミュール"
+        },
+        {
+          "number": 5,
+          "model": "TRL-05",
+          "name": "ドラフト"
+        },
+        {
+          "number": 6,
+          "model": "TRL-06",
+          "name": "ホーネット"
+        },
+        {
+          "number": 7,
+          "model": "TRL-07",
+          "name": "ライノ"
+        },
+        {
+          "number": 8,
+          "model": "TRL-08",
+          "name": "バイソン"
+        },
+        {
+          "number": 9,
+          "model": "TRL-09",
+          "name": "マンモス"
+        }
+      ]
+    },
+    {
+      "id": "GHC",
+      "name": "グリーンホロウ開拓公社",
+      "color": "green",
+      "description": "辺境惑星の開拓を担う半官半民の公社。環境調査と入植支援が本業で、センサー類と現地資材での修理性に優れる。機体名は植物の名前。自衛用と称して武装化を進めている。",
+      "units": [
+        {
+          "number": 1,
+          "model": "GHC-01",
+          "name": "スポア"
+        },
+        {
+          "number": 2,
+          "model": "GHC-02",
+          "name": "ファーン"
+        },
+        {
+          "number": 3,
+          "model": "GHC-03",
+          "name": "ルート"
+        },
+        {
+          "number": 4,
+          "model": "GHC-04",
+          "name": "バール"
+        },
+        {
+          "number": 5,
+          "model": "GHC-05",
+          "name": "オーク"
+        },
+        {
+          "number": 6,
+          "model": "GHC-06",
+          "name": "シスル"
+        },
+        {
+          "number": 7,
+          "model": "GHC-07",
+          "name": "パイン"
+        },
+        {
+          "number": 8,
+          "model": "GHC-08",
+          "name": "アイアンバーク"
+        },
+        {
+          "number": 9,
+          "model": "GHC-09",
+          "name": "セコイア"
+        }
+      ]
+    },
+    {
+      "id": "ALB",
+      "name": "アルビオン精機",
+      "color": "white",
+      "description": "精密機器と制御系で名を馳せた老舗。少数精鋭のラインナップでエースや要人向けの高級機を手がける。機体名は騎士団の役職。高性能だが高価で、整備には専門技術者が欠かせない。",
+      "units": [
+        {
+          "number": 1,
+          "model": "ALB-01",
+          "name": "ヘラルド"
+        },
+        {
+          "number": 2,
+          "model": "ALB-02",
+          "name": "スクワイア"
+        },
+        {
+          "number": 3,
+          "model": "ALB-03",
+          "name": "メイソン"
+        },
+        {
+          "number": 4,
+          "model": "ALB-04",
+          "name": "スチュワード"
+        },
+        {
+          "number": 5,
+          "model": "ALB-05",
+          "name": "ナイト"
+        },
+        {
+          "number": 6,
+          "model": "ALB-06",
+          "name": "ランサー"
+        },
+        {
+          "number": 7,
+          "model": "ALB-07",
+          "name": "アーバレスト"
+        },
+        {
+          "number": 8,
+          "model": "ALB-08",
+          "name": "パラディン"
+        },
+        {
+          "number": 9,
+          "model": "ALB-09",
+          "name": "シタデル"
+        }
+      ]
+    },
+    {
+      "id": "NMS",
+      "name": "ネメシス・ディフェンス",
+      "color": "black",
+      "description": "資本関係も本社所在地も非公表の新興民間軍事企業。自社部隊で実戦投入した機体だけを市販する実戦主義で、低被発見性と奇襲向けの設計が得意。機体名は亡霊・死にまつわる言葉。他社技術の流用の噂が絶えない。",
+      "units": [
+        {
+          "number": 1,
+          "model": "NMS-01",
+          "name": "ウィスプ"
+        },
+        {
+          "number": 2,
+          "model": "NMS-02",
+          "name": "シェイド"
+        },
+        {
+          "number": 3,
+          "model": "NMS-03",
+          "name": "ディガー"
+        },
+        {
+          "number": 4,
+          "model": "NMS-04",
+          "name": "ハース"
+        },
+        {
+          "number": 5,
+          "model": "NMS-05",
+          "name": "レイス"
+        },
+        {
+          "number": 6,
+          "model": "NMS-06",
+          "name": "バンシー"
+        },
+        {
+          "number": 7,
+          "model": "NMS-07",
+          "name": "レクイエム"
+        },
+        {
+          "number": 8,
+          "model": "NMS-08",
+          "name": "レヴナント"
+        },
+        {
+          "number": 9,
+          "model": "NMS-09",
+          "name": "ネクロポリス"
+        }
+      ]
+    }
+  ]
+}

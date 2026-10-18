@@ -1,0 +1,534 @@
+:root {
+  --bg: #11151c;
+  --bg-2: #1a2029;
+  --bg-3: #242c38;
+  --line: #2f3946;
+  --text: #e6ebf2;
+  --muted: #8c97a8;
+  --me: #3fd0c9;
+  --op: #f0795b;
+  --accent: #ffd34d;
+  --sky: #4aa3e8;
+  --rough: #b07a45;
+
+  --c-red: #d9534f;
+  --c-blue: #3d7be0;
+  --c-yellow: #e8c547;
+  --c-green: #48ad68;
+  --c-white: #ecebe4;
+  --c-black: #2b2b31;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  overscroll-behavior: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- buttons ---- */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--bg-3);
+  font-weight: 600;
+  font-size: 16px;
+}
+.btn.primary {
+  background: var(--me);
+  color: #062221;
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ---- menu ---- */
+.menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 16px;
+}
+.menu-title {
+  margin-bottom: 24px;
+}
+.menu-title small {
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  font-weight: 700;
+}
+.menu-title h1 {
+  margin: 4px 0 12px;
+  font-size: 30px;
+}
+.menu-title p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.menu-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---- game ---- */
+.game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px 16px;
+  gap: 8px;
+}
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hud-score {
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+}
+.hud-score .me {
+  color: var(--me);
+}
+.hud-score .op {
+  color: var(--op);
+}
+.hud-score .sep {
+  color: var(--muted);
+}
+.subhud {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+.subhud .turn.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---- board ---- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--flags, 7), minmax(0, 1fr));
+  gap: 4px;
+}
+.flag {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 3px;
+  border-radius: 8px;
+  background: var(--bg-2);
+  border: 2px solid transparent;
+  min-width: 0;
+}
+.flag.t-sky {
+  background: color-mix(in srgb, var(--sky) 18%, var(--bg-2));
+}
+.flag.t-rough {
+  background: color-mix(in srgb, var(--rough) 22%, var(--bg-2));
+}
+.flag.own-me {
+  border-color: var(--me);
+}
+.flag.own-op {
+  border-color: var(--op);
+}
+.flag.own-me .slot,
+.flag.own-op .slot {
+  opacity: 0.25;
+}
+.flag.legal {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 50%, transparent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.flag.inspected {
+  border-color: var(--text);
+}
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+}
+.side {
+  display: flex;
+  gap: 3px;
+}
+.side.top {
+  flex-direction: column-reverse;
+}
+.side.bottom {
+  flex-direction: column;
+}
+.slot,
+.mini {
+  height: 30px;
+  border-radius: 5px;
+}
+.slot {
+  border: 1px dashed var(--line);
+}
+.mini {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.mini b {
+  font-weight: 800;
+}
+.mini i {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+.mini.last {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 0;
+  line-height: 1.15;
+}
+.flag-no {
+  font-weight: 800;
+  font-size: 14px;
+}
+.terrain {
+  font-size: 10px;
+  color: var(--muted);
+}
+.t-sky .terrain {
+  color: var(--sky);
+  font-weight: 700;
+}
+.t-rough .terrain {
+  color: #d9a066;
+  font-weight: 700;
+}
+.owner {
+  font-size: 10px;
+  font-weight: 700;
+}
+.own-me .owner {
+  color: var(--me);
+}
+.own-op .owner {
+  color: var(--op);
+}
+
+/* company colors */
+.c-red {
+  background: var(--c-red);
+  color: #fff;
+}
+.c-blue {
+  background: var(--c-blue);
+  color: #fff;
+}
+.c-yellow {
+  background: var(--c-yellow);
+  color: #2a2200;
+}
+.c-green {
+  background: var(--c-green);
+  color: #fff;
+}
+.c-white {
+  background: var(--c-white);
+  color: #1b1b1b;
+}
+.c-black {
+  background: var(--c-black);
+  color: #f2f2f2;
+  box-shadow: inset 0 0 0 1px #5a5a66;
+}
+
+/* ---- info ---- */
+.info {
+  position: relative;
+  min-height: 64px;
+  background: var(--bg-2);
+  border-radius: 10px;
+  padding: 10px 56px 10px 12px;
+  font-size: 13px;
+}
+.log-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--bg-3);
+  color: var(--muted);
+}
+.events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+.ev-secure {
+  color: var(--accent);
+}
+.ev-pass {
+  color: var(--muted);
+}
+.hint {
+  margin: 0;
+  color: var(--muted);
+}
+.detail-title {
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.detail-title small {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+.detail-sub {
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.6;
+}
+.chip {
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* ---- hand ---- */
+.hand {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  min-height: 88px;
+  margin-top: auto;
+}
+.hand.disabled {
+  opacity: 0.55;
+}
+.card {
+  position: relative;
+  height: 88px;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s;
+}
+.card .num {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+}
+.card .attr {
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 4px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.25);
+}
+.card .co {
+  position: absolute;
+  bottom: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+.card.selected {
+  transform: translateY(-10px);
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+.hand-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---- result (決着後、手札の位置に出す) ---- */
+.flag.winning.own-me {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--me) 60%, transparent);
+  background: color-mix(in srgb, var(--me) 14%, var(--bg-2));
+}
+.flag.winning.own-op {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--op) 60%, transparent);
+  background: color-mix(in srgb, var(--op) 14%, var(--bg-2));
+}
+.result {
+  margin-top: auto;
+  background: var(--bg-2);
+  border-radius: 14px;
+  padding: 14px 16px;
+  animation: rise 0.35s ease-out;
+}
+@keyframes rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}
+.result-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.result-head h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.result-head h2.win {
+  color: var(--me);
+}
+.result-head h2.lose {
+  color: var(--op);
+}
+.result-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.result-actions {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+.result .seed {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ---- overlay ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 12, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 10;
+}
+.panel {
+  width: 100%;
+  max-width: 420px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  background: var(--bg-2);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  line-height: 1.6;
+}
+.panel h2 {
+  margin: 0 0 12px;
+}
+.panel p {
+  color: var(--muted);
+}
+.panel .events {
+  margin: 12px 0;
+  font-size: 14px;
+}
+.panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.seed {
+  font-size: 11px;
+  margin: 12px 0 0;
+}
+.panel.rules,
+.panel.log {
+  text-align: left;
+  font-size: 14px;
+}
+.panel.rules h3 {
+  margin: 16px 0 4px;
+  font-size: 15px;
+}
+.panel.rules p {
+  margin: 4px 0;
+}
+.panel.rules .btn,
+.panel.log .btn {
+  margin-top: 16px;
+}
+.ranks {
+  margin: 4px 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+.ranks b {
+  color: var(--text);
+}
+.panel.log ol {
+  padding-left: 24px;
+  margin: 0;
+  font-size: 13px;
+}
