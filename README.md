@@ -2,6 +2,8 @@
 
 ルールの確認用のWeb版。最終的なネイティブアプリ（Expo想定）へは `src/game/` をそのまま持っていく。
 
+公開版：https://takumifunasaka.github.io/mech-battleline/ （`main` に push すると GitHub Actions がテスト・ビルドして自動で更新する）
+
 ```sh
 npm install
 npm run dev     # http://localhost:5173 。同じWi-Fiのスマホからは表示される Network のURLで開く
